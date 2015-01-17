@@ -59,10 +59,11 @@ class StandardGrid implements Grid
             }
         }
 
-        if (($this->getValueCount(Winner::X) >= 4 && $this->getValueCount(Winner::O) >= 4)
-            || ($this->getValueCount(Winner::X) >= 4 && $this->getValueCount(Winner::TIE) >= 4)
-            || ($this->getValueCount(Winner::O) >= 4 && $this->getValueCount(Winner::TIE) >= 4)
-        ) {
+        // This forces the entire grid to be filled out before a tie can be determined,
+        // but it fixes an issue from before where the grid squares are a mix of X's, O's, and ties.
+        $totalCount = $this->getValueCount(Winner::X) + $this->getValueCount(Winner::O)
+            + $this->getValueCount(Winner::TIE);
+        if ($totalCount >= 9) {
             return new Winner(Winner::TIE);
         }
 

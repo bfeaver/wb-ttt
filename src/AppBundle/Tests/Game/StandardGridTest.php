@@ -144,7 +144,7 @@ class StandardGridTest extends \PHPUnit_Framework_TestCase
             new XoSquare('o'),
             new XoSquare('o'),
             new XoSquare('o'),
-            new XoSquare(),
+            new XoSquare('x'),
         ]);
 
         $winner = $grid->getWinner();
