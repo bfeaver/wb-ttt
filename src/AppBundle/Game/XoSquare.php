@@ -1,7 +1,12 @@
 <?php
 namespace AppBundle\Game;
 
-class XoSquare
+/**
+ * A square the contains X or O values.
+ * 
+ * @author Brian Feaver <brian.feaver@gmail.com>
+ */
+class XoSquare implements Square
 {
     /**
      * @var string

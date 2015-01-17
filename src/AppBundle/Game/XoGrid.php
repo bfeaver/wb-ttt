@@ -1,6 +1,11 @@
 <?php
 namespace AppBundle\Game;
 
+/**
+ * A grid that contains X & O squares.
+ *
+ * @author Brian Feaver <brian.feaver@gmail.com>
+ */
 class XoGrid implements Grid
 {
     /**
