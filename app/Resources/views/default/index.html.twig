@@ -1,32 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Crazy Tic-Tac-Toe</h1>
-    {% for flashMessage in app.session.flashbag.get('winner') %}
-        <div>
-            {{ flashMessage }}
+{% form_theme form _self %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="screen">
+{% endblock %}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        <div class="alert alert-danger">
+            <ul>
+                {%- for error in errors -%}
+                    <li>{{ error.message }}</li>
+                {%- endfor -%}
+            </ul>
         </div>
-    {% endfor %}
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-    <table>
-        <tr>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[0] }) }}</td>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[1] }) }}</td>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[2] }) }}</td>
-        </tr>
-        <tr>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[3] }) }}</td>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[4] }) }}</td>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[5] }) }}</td>
-        </tr>
-        <tr>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[6] }) }}</td>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[7] }) }}</td>
-            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[8] }) }}</td>
-        </tr>
-    </table>
-    {{ form_rest(form) }}
-    <input type="submit" value="Submit">
-    {{ form_end(form) }}
+    {%- endif %}
+{%- endblock form_errors %}
+
+{% block body %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Crazy Tic-Tac-Toe</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="game-area">
+            {% for flashMessage in app.session.flashbag.get('winner') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('tie') %}
+                <div class="alert alert-warning">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {{ form_start(form) }}
+            {{ form_errors(form, { 'attr': { 'class': 'error' }}) }}
+            <table class="main-grid">
+                <tr>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[0] }) }}</td>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[1] }) }}</td>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[2] }) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[3] }) }}</td>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[4] }) }}</td>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[5] }) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[6] }) }}</td>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[7] }) }}</td>
+                    <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[8] }) }}</td>
+                </tr>
+            </table>
+            {{ form_rest(form) }}
+            <input type="submit" value="Submit" class="btn btn-primary">
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

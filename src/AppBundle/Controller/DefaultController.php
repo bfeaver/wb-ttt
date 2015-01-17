@@ -26,7 +26,7 @@ class DefaultController extends Controller
             if ($winner->isStatus(Winner::X) || $winner->isStatus(Winner::O)) {
                 $request->getSession()->getFlashBag()->add('winner', 'The winner is ' . $winner->getStatus());
             } elseif ($winner->isStatus(Winner::TIE)) {
-                $request->getSession()->getFlashBag()->add('winner', 'We have a tie!');
+                $request->getSession()->getFlashBag()->add('tie', 'We have a tie!');
             }
         }
 

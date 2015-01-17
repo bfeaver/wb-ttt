@@ -1,0 +1,15 @@
+body {
+    padding-top: 50px;
+}
+
+.game-area {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.main-grid {
+    border-collapse: separate;
+    border-spacing: 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
