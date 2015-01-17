@@ -8,6 +8,7 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+        $this->markTestSkipped('came with framework, remove...');
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/app/example');

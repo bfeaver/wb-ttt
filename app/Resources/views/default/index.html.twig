@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Homepage.
+    {% for flashMessage in app.session.flashbag.get('winner') %}
+        <div>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Submit">
+    {{ form_end(form) }}
 {% endblock %}
