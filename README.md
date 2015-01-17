@@ -11,7 +11,8 @@ know how to get or have composer installed. But just in case, here are the
 ```
 $ vagrant up
 $ composer install
-$ app/console assetic:dump
+$ vagrant ssh
+$ cd /var/www && app/console assetic:dump
 ```
 
 ## Running
