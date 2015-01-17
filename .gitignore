@@ -3,3 +3,4 @@ bin/
 .vagrant/
 app/cache/*
 app/logs/*
+app/config/parameters.yml
