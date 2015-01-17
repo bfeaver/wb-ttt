@@ -2,10 +2,10 @@
 namespace AppBundle\Tests\Game;
 
 
-use AppBundle\Game\XoGrid;
+use AppBundle\Game\StandardGrid;
 use AppBundle\Game\XoSquare;
 
-class XoGridTest extends \PHPUnit_Framework_TestCase
+class StandardGridTest extends \PHPUnit_Framework_TestCase
 {
     public function winningSquaresProvider()
     {
@@ -106,7 +106,7 @@ class XoGridTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWinner(array $squares)
     {
-        $grid = new XoGrid($squares);
+        $grid = new StandardGrid($squares);
 
         $winner = $grid->getWinner();
 

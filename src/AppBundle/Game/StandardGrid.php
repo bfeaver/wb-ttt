@@ -2,11 +2,11 @@
 namespace AppBundle\Game;
 
 /**
- * A grid that contains X & O squares.
+ * Standard 9 square tic-tac-toe grid.
  *
  * @author Brian Feaver <brian.feaver@gmail.com>
  */
-class XoGrid implements Grid
+class StandardGrid implements Grid
 {
     /**
      * @var Square[]
@@ -26,22 +26,11 @@ class XoGrid implements Grid
 
     public function __construct($squares = [])
     {
-        // TODO Validate # squares is 9
-        if (empty($squares)) {
-            $this->squares = [
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-                new XoSquare(),
-            ];
-        } else {
-            $this->squares = $squares;
+        if (count($squares) !== 9) {
+            throw new \InvalidArgumentException('There must be 9 squares.');
         }
+
+        $this->squares = $squares;
     }
 
     public function setSquares($squares)

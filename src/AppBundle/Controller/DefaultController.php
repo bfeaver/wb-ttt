@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\XoGridType;
-use AppBundle\Game\XoGrid;
+use AppBundle\Game\GridFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $grid = new XoGrid();
+        $grid = $this->getGridFactory()->createStandardGrid();
 
         $form = $this->createForm(new XoGridType(), $grid);
 
@@ -26,5 +26,13 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/index.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @return GridFactory
+     */
+    private function getGridFactory()
+    {
+        $this->get('grid_factory');
     }
 }
