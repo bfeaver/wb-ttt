@@ -21,9 +21,11 @@ class GridFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $grid = $this->factory->createNestedGrid(2);
 
-        $firstSquare = reset($grid->getSquares());
+        $outerSquares = $grid->getSquares();
+        $firstSquare = reset($outerSquares);
         $this->assertInstanceOf(GridSquare::class, $firstSquare);
-        $firstNestedSquare = reset($firstSquare->getGrid()->getSquares());
+        $innerSquares = $firstSquare->getSquares();
+        $firstNestedSquare = reset($innerSquares);
         $this->assertInstanceOf(XoSquare::class, $firstNestedSquare);
     }
 
@@ -33,7 +35,7 @@ class GridFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             XoSquare::class,
-            $grid->getSquares()[0]->getGrid()->getSquares()[0]->getGrid()->getSquares()[0]
+            $grid->getSquares()[0]->getSquares()[0]->getSquares()[0]
         );
     }
 }
