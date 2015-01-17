@@ -51,7 +51,9 @@ class StandardGrid implements Grid
         foreach ($this->winningKeys as $values) {
             foreach (['X', 'O'] as $value) {
                 if ($this->squares[$values[0]]->getValue() == $value
-                    && $this->squares[$values[1]]->getValue() == $value && $this->squares[$values[2]]->getValue() == $value) {
+                    && $this->squares[$values[1]]->getValue() == $value
+                    && $this->squares[$values[2]]->getValue() == $value
+                ) {
                     return $value;
                 }
             }

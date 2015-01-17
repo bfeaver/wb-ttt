@@ -6,7 +6,7 @@ namespace AppBundle\Game;
  *
  * @author Brian Feaver <brian.feaver@gmail.com>
  */
-class GridSquare implements Grid
+class GridSquare implements Square
 {
     /**
      * @var Grid
@@ -19,18 +19,18 @@ class GridSquare implements Grid
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getWinner()
-    {
-        return $this->grid->getWinner();
-    }
-
-    /**
      * @return Grid
      */
     public function getGrid()
     {
         return $this->grid;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getValue()
+    {
+        return $this->grid->getWinner();
     }
 }
