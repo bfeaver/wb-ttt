@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>Crazy Tic-Tac-Toe</h1>
     {% for flashMessage in app.session.flashbag.get('winner') %}
         <div>
             {{ flashMessage }}

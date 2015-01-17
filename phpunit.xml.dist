@@ -11,5 +11,6 @@
 
     <php>
         <ini name="date.timezone" value="UTC"/>
+        <server name="KERNEL_DIR" value="app/" />
     </php>
 </phpunit>
