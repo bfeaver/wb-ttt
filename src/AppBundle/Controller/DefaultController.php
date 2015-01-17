@@ -33,6 +33,6 @@ class DefaultController extends Controller
      */
     private function getGridFactory()
     {
-        $this->get('grid_factory');
+        return $this->get('grid_factory');
     }
 }
