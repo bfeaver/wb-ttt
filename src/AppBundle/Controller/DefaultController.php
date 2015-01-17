@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\XoGridType;
 use AppBundle\Game\XoGrid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,12 +17,7 @@ class DefaultController extends Controller
     {
         $grid = new XoGrid();
 
-        $formBuilder = $this->createFormBuilder($grid);
-        for ($i = 0; $i < 9; $i++) {
-            $propPath = "squares[$i].value";
-            $formBuilder->add('sq' . $i, 'text', ['property_path' => $propPath, 'required' => false]);
-        }
-        $form = $formBuilder->getForm();
+        $form = $this->createForm(new XoGridType(), $grid);
 
         $form->handleRequest($request);
 
