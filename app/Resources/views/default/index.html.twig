@@ -7,6 +7,7 @@
         </div>
     {% endfor %}
     {{ form_start(form) }}
+    {{ form_errors(form) }}
     <table>
         <tr>
             <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[0] }) }}</td>

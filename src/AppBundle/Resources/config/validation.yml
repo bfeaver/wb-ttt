@@ -1,0 +1,16 @@
+AppBundle\Game\XoSquare:
+    properties:
+        value:
+            - Regex:
+                pattern: "/^[xXoO]$/"
+                message: "Value must be X or O."
+
+AppBundle\Game\StandardGrid:
+    properties:
+        squares:
+            - Valid: ~
+
+AppBundle\Game\GridSquare:
+    properties:
+        grid:
+            - Valid: ~

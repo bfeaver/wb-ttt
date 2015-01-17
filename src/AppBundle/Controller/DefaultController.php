@@ -21,7 +21,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if (false !== $winner = $grid->getWinner()) {
+        if ($form->isValid() && false !== $winner = $grid->getWinner()) {
             $request->getSession()->getFlashBag()->add('winner', 'The winner is ' . $winner);
         }
 

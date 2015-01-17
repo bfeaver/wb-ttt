@@ -12,13 +12,13 @@ class SquareType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('value', 'text', ['required' => false]);
+        $builder->add('value', 'text', ['required' => false, 'max_length' => 1]);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Game\Square'
+            'data_class' => 'AppBundle\Game\XoSquare'
         ]);
     }
 
