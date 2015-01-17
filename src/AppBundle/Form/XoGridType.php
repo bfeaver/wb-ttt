@@ -11,10 +11,7 @@ class XoGridType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        for ($i = 0; $i < 9; $i++) {
-            $propPath = "squares[$i].value";
-            $builder->add('sq' . $i, 'text', ['property_path' => $propPath, 'required' => false]);
-        }
+        $builder->add('squares', 'collection', ['type' => new SquareType()]);
     }
 
     public function getName()
