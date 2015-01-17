@@ -7,19 +7,105 @@ use AppBundle\Game\XoSquare;
 
 class XoGridTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetWinner()
+    public function winningSquaresProvider()
     {
-        $squares = [
-            new XoSquare('X'),
-            new XoSquare(),
-            new XoSquare(),
-            new XoSquare('X'),
-            new XoSquare(),
-            new XoSquare(),
-            new XoSquare('X'),
-            new XoSquare(),
-            new XoSquare(),
+        return [
+            [[
+                new XoSquare('X'),
+                new XoSquare('X'),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+            ]],
+            [[
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare('X'),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+            ]],
+            [[
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare('X'),
+                new XoSquare('X'),
+            ]],
+            [[
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+            ]],
+            [[
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+            ]],
+            [[
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+            ]],
+            [[
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+            ]],
+            [[
+                new XoSquare(),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare('X'),
+                new XoSquare(),
+                new XoSquare(),
+            ]],
         ];
+    }
+
+    /**
+     * @dataProvider winningSquaresProvider
+     */
+    public function testGetWinner(array $squares)
+    {
         $grid = new XoGrid($squares);
 
         $winner = $grid->getWinner();
