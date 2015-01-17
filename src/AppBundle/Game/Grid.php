@@ -11,7 +11,7 @@ interface Grid
     /**
      * Return the winner of the grid.
      *
-     * @return string|bool
+     * @return Winner|bool
      */
     function getWinner();
 

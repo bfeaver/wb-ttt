@@ -44,21 +44,45 @@ class StandardGrid implements Grid
     }
 
     /**
-     * @return string|bool
+     * {@inheritdoc}
      */
     public function getWinner()
     {
         foreach ($this->winningKeys as $values) {
-            foreach (['X', 'O'] as $value) {
-                if ($this->squares[$values[0]]->getValue() == $value
-                    && $this->squares[$values[1]]->getValue() == $value
-                    && $this->squares[$values[2]]->getValue() == $value
+            foreach ([Winner::X, Winner::O] as $value) {
+                if ($this->squares[$values[0]]->getWinner()->isStatus($value)
+                    && $this->squares[$values[1]]->getWinner()->isStatus($value)
+                    && $this->squares[$values[2]]->getWinner()->isStatus($value)
                 ) {
-                    return $value;
+                    return new Winner($value);
                 }
             }
         }
 
-        return false;
+        if (($this->getValueCount(Winner::X) >= 4 && $this->getValueCount(Winner::O) >= 4)
+            || ($this->getValueCount(Winner::X) >= 4 && $this->getValueCount(Winner::TIE) >= 4)
+            || ($this->getValueCount(Winner::O) >= 4 && $this->getValueCount(Winner::TIE) >= 4)
+        ) {
+            return new Winner(Winner::TIE);
+        }
+
+        return new Winner(Winner::NONE);
+    }
+
+    /**
+     * Get the number of X or O values in the grid.
+     *
+     * @param string $value
+     * @return int
+     */
+    public function getValueCount($value)
+    {
+        $reduce = function ($carry, Square $square) use ($value) {
+            if ($square->getWinner()->isStatus($value)) {
+                $carry++;
+            }
+            return $carry;
+        };
+        return array_reduce($this->squares, $reduce, 0);
     }
 }

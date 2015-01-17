@@ -3,6 +3,7 @@ namespace AppBundle\Tests\Integration;
 
 use AppBundle\Game\GridFactory;
 use AppBundle\Game\StandardGrid;
+use AppBundle\Game\Winner;
 
 class NestedGridTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,6 +35,49 @@ class NestedGridTest extends \PHPUnit_Framework_TestCase
         $parentSquares[8]->getSquares()[4]->setValue('X');
         $parentSquares[8]->getSquares()[8]->setValue('X');
 
-        $this->assertEquals('X', $this->grid->getWinner());
+        $this->assertEquals('X', $this->grid->getWinner()->getStatus());
+    }
+
+    public function testTie()
+    {
+        $parentSquares = $this->grid->getSquares();
+
+        $this->setXWins($parentSquares[0]->getSquares());
+        $this->setXWins($parentSquares[1]->getSquares());
+        $this->setXWins($parentSquares[5]->getSquares());
+        $this->setXWins($parentSquares[6]->getSquares());
+        $this->setXWins($parentSquares[8]->getSquares());
+        $this->setTie($parentSquares[2]->getSquares());
+        $this->setTie($parentSquares[3]->getSquares());
+        $this->setTie($parentSquares[4]->getSquares());
+        $this->setTie($parentSquares[7]->getSquares());
+
+        $this->assertEquals(Winner::TIE, $this->grid->getWinner()->getStatus());
+    }
+
+    private function setXWins(array $squares)
+    {
+        $squares[0]->setValue('X');
+        $squares[1]->setValue('o');
+        $squares[2]->setValue('o');
+        $squares[3]->setValue('o');
+        $squares[4]->setValue('X');
+        $squares[5]->setValue('X');
+        $squares[6]->setValue('o');
+        $squares[7]->setValue('X');
+        $squares[8]->setValue('X');
+    }
+
+    private function setTie($squares)
+    {
+        $squares[0]->setValue('X');
+        $squares[1]->setValue('o');
+        $squares[2]->setValue('o');
+        $squares[3]->setValue('o');
+        $squares[4]->setValue('X');
+        $squares[5]->setValue('X');
+        $squares[6]->setValue('o');
+        $squares[7]->setValue('X');
+        $squares[8]->setValue('o');
     }
 }

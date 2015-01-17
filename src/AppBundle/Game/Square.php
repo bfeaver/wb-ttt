@@ -3,5 +3,8 @@ namespace AppBundle\Game;
 
 interface Square
 {
-    function getValue();
+    /**
+     * @return Winner
+     */
+    function getWinner();
 }

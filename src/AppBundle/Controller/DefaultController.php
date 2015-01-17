@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\NestedGridType;
 use AppBundle\Game\GridFactory;
+use AppBundle\Game\Winner;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,8 +21,13 @@ class DefaultController extends Controller
         $form = $this->createForm(new NestedGridType(), $grid);
         $form->handleRequest($request);
 
-        if ($form->isValid() && false !== $winner = $grid->getWinner()) {
-            $request->getSession()->getFlashBag()->add('winner', 'The winner is ' . $winner);
+        if ($form->isValid()) {
+            $winner = $grid->getWinner();
+            if ($winner->isStatus(Winner::X) || $winner->isStatus(Winner::O)) {
+                $request->getSession()->getFlashBag()->add('winner', 'The winner is ' . $winner->getStatus());
+            } elseif ($winner->isStatus(Winner::TIE)) {
+                $request->getSession()->getFlashBag()->add('winner', 'We have a tie!');
+            }
         }
 
         return $this->render('default/index.html.twig', ['form' => $form->createView()]);

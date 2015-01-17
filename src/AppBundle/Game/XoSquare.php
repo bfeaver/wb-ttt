@@ -15,7 +15,7 @@ class XoSquare implements Square
 
     function __construct($value = null)
     {
-        $this->value = $value;
+        $this->setValue($value);
     }
 
     /**
@@ -32,5 +32,10 @@ class XoSquare implements Square
     public function setValue($value)
     {
         $this->value = strtoupper($value);
+    }
+
+    public function getWinner()
+    {
+        return new Winner($this->getValue());
     }
 }
