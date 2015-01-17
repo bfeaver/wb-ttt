@@ -7,7 +7,23 @@
         </div>
     {% endfor %}
     {{ form_start(form) }}
-    {% include 'default/grid.html.twig' %}
+    <table>
+        <tr>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[0] }) }}</td>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[1] }) }}</td>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[2] }) }}</td>
+        </tr>
+        <tr>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[3] }) }}</td>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[4] }) }}</td>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[5] }) }}</td>
+        </tr>
+        <tr>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[6] }) }}</td>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[7] }) }}</td>
+            <td>{{ include('default/grid.html.twig', { 'grid_form': form.squares[8] }) }}</td>
+        </tr>
+    </table>
     {{ form_rest(form) }}
     <input type="submit" value="Submit">
     {{ form_end(form) }}

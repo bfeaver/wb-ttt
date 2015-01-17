@@ -6,7 +6,7 @@ namespace AppBundle\Game;
  *
  * @author Brian Feaver <brian.feaver@gmail.com>
  */
-class GridSquare implements Square
+class GridSquare implements Square, Grid
 {
     /**
      * @var Grid
@@ -32,5 +32,23 @@ class GridSquare implements Square
     public function getValue()
     {
         return $this->grid->getWinner();
+    }
+
+    /**
+     * Return the winner of the grid.
+     *
+     * @return string|bool
+     */
+    public function getWinner()
+    {
+        return $this->grid->getWinner();
+    }
+
+    /**
+     * @return Square[]
+     */
+    public function getSquares()
+    {
+        return $this->grid->getSquares();
     }
 }

@@ -14,4 +14,9 @@ interface Grid
      * @return string|bool
      */
     function getWinner();
+
+    /**
+     * @return Square[]
+     */
+    function getSquares();
 }

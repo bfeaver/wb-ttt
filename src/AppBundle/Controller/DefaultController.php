@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\XoGridType;
+use AppBundle\Form\NestedGridType;
 use AppBundle\Game\GridFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,9 +15,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $grid = $this->getGridFactory()->createStandardGrid();
+        $grid = $this->getGridFactory()->createNestedGrid(2);
 
-        $form = $this->createForm(new XoGridType(), $grid);
+        $form = $this->createForm(new NestedGridType(), $grid);
 
         $form->handleRequest($request);
 
