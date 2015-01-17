@@ -3,9 +3,8 @@ php:
     - 5.5
 
 env:
-    - DATABASE_PASSWORD=''
+    - DATABASE_PASSWORD=null SYMFONY_ENV=test
 
 install:
     - composer install
-    - app/console cache:clear --env=test
     - mysql -e 'create database symfony;'
