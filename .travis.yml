@@ -7,4 +7,5 @@ env:
 
 install:
     - composer install
+    - app/console cache:clear
     - mysql -e 'create database symfony;'
