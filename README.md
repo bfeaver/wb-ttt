@@ -1,5 +1,7 @@
 # Crazy Tic-Tac-Toe
 
+[![Build Status](https://secure.travis-ci.org/bfeaver/wb-ttt.png)](http://travis-ci.org/bfeaver/wb-ttt)
+
 ## Installation
 
 The following two commands will get you up and running. I assume you already
